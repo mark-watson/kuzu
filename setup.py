@@ -101,7 +101,7 @@ class BuildExtFirst(_build_py):
 setup(
     name="kuzu",
     version=_get_kuzu_version(),
-    ext_modules=[CMakeExtension(name="kuzu", sourcedir=BASE_DIR)],
+    ext_modules=[CMakeExtension(name="kuzu._kuzu", sourcedir=BASE_DIR)],
     packages=["kuzu"],
     package_dir={"kuzu": "tools/python_api/src_py"},
     cmdclass={
