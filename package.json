@@ -1,0 +1,30 @@
+{
+  "name": "kuzu",
+  "version": "1.0.0",
+  "description": "An embeddable property-graph database with Cypher query support. This is a simplified fork focused on **Python** and **C library** builds.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mark-watson/kuzu.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/mark-watson/kuzu/issues"
+  },
+  "homepage": "https://github.com/mark-watson/kuzu#readme",
+  "dependencies": {
+    "@types/node": "^25.6.0",
+    "koffi": "^2.16.2",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.3"
+  }
+}
