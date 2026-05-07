@@ -14,6 +14,7 @@ dist/
 uv.lock
 .python-version
 example_db/
+example_db_lisp/
 
 compile_commands.json
 

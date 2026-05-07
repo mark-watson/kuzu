@@ -27,6 +27,13 @@ else
 endif
 export CMAKE_BUILD_PARALLEL_LEVEL=$(NUM_THREADS)
 
+# Shared library extension
+ifeq ($(shell uname -s 2>/dev/null),Darwin)
+	SHARED_EXT ?= dylib
+else
+	SHARED_EXT ?= so
+endif
+
 ifeq ($(OS),Windows_NT)
 	GEN ?= Ninja
 	SHELL := cmd.exe
@@ -75,11 +82,16 @@ python-install: python  ## Build and install kuzu Python package globally via uv
 
 # ── C shared library (for Common Lisp CFFI, etc.) ──────────────────
 
-c-lib:  ## Build libkuzu shared library
-	$(call run-cmake-release,)
+c-lib: cffi-wrapper  ## Build libkuzu shared library + CFFI wrapper
 	@echo ""
-	@echo "✓ libkuzu built in build/$$(call get-build-path,Release)/src/"
+	@echo "✓ libkuzu built in build/release/src/"
 	@echo "  Link with -lkuzu and include src/include/c_api/kuzu.h"
+
+cffi-wrapper: release  ## Build thin C wrapper for CL CFFI (avoids struct-by-value)
+	$(CC) -shared -o build/$(call get-build-path,Release)/src/libkuzu_cffi.$(SHARED_EXT) \
+		kuzu_cffi_wrapper.c -Isrc/include \
+		-Lbuild/$(call get-build-path,Release)/src -lkuzu
+
 
 # ── Installation ────────────────────────────────────────────────────
 

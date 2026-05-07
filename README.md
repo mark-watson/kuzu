@@ -40,13 +40,18 @@ Or reference this source tree directly:
 uv add kuzu --path /path/to/kuzu
 ```
 
-## C Shared Library (for Common Lisp, etc.)
+## C Shared Library & Common Lisp
 
-Build `libkuzu` for use with CFFI-based language bindings:
+Build `libkuzu` and the CFFI wrapper for Common Lisp:
 
 ```bash
 make c-lib
-make install PREFIX=./install
+```
+
+Run the Common Lisp demo (requires SBCL + Quicklisp with `cffi`):
+
+```bash
+sbcl --load example.lisp
 ```
 
 The C header is at `src/include/c_api/kuzu.h`.
@@ -60,9 +65,11 @@ The C header is at `src/include/c_api/kuzu.h`.
 | `make python` | Build C++ engine + Python bindings |
 | `make python-install` | Build + install Python package via `uv pip install --system .` |
 | `make pytest` | Run the Python test suite |
-| `make c-lib` | Build the shared library for C/CL CFFI use |
+| `make c-lib` | Build shared library + CFFI wrapper for C/CL use |
+| `make cffi-wrapper` | Build just the thin CL CFFI wrapper (requires `make release` first) |
 | `make install` | Install built artifacts to `PREFIX` (default: `./install`) |
 | `make clean` | Remove all build artifacts |
+
 
 ## License
 
