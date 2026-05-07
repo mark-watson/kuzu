@@ -25,20 +25,13 @@
 ;;; ── Library paths ─────────────────────────────────────────────────
 
 (defvar *base-dir*
-  (make-pathname :directory
-    (pathname-directory
-     (or *compile-file-truename*
-         *load-truename*
-         *default-pathname-defaults*))))
+  (uiop:ensure-directory-pathname
+   (or (uiop:getenv "KUZU_HOME")
+       (error "KUZU_HOME environment variable is not set"))))
 
 (define-foreign-library libkuzu
   (:darwin (:or #.(namestring
-                   (merge-pathnames "build/release/src/libkuzu.dylib"
-                                   (make-pathname :directory
-                                     (pathname-directory
-                                      (or *compile-file-truename*
-                                          *load-truename*
-                                          *default-pathname-defaults*)))))))
+                   (merge-pathnames "build/release/src/libkuzu.dylib" *base-dir*))))
   (:unix  "libkuzu.so")
   (t      "libkuzu"))
 
@@ -46,12 +39,7 @@
 ;; calls, avoiding cffi-libffi dependency.
 (define-foreign-library libkuzu-cffi
   (:darwin (:or #.(namestring
-                   (merge-pathnames "build/release/src/libkuzu_cffi.dylib"
-                                   (make-pathname :directory
-                                     (pathname-directory
-                                      (or *compile-file-truename*
-                                          *load-truename*
-                                          *default-pathname-defaults*)))))))
+                   (merge-pathnames "build/release/src/libkuzu_cffi.dylib" *base-dir*))))
   (:unix  "libkuzu_cffi.so")
   (t      "libkuzu_cffi"))
 
