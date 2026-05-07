@@ -1,7 +1,7 @@
 *.so
 
 example_db_ts
-node_module
+node_modules
 example_db*
 
 .idea/
