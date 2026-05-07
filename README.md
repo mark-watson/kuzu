@@ -67,6 +67,7 @@ The C header is at `src/include/c_api/kuzu.h`.
 | `make pytest` | Run the Python test suite |
 | `make c-lib` | Build shared library + CFFI wrapper for C/CL use |
 | `make cffi-wrapper` | Build just the thin CL CFFI wrapper (requires `make release` first) |
+| `make swi-prolog` | Build SWI-Prolog foreign library bridge |
 | `make install` | Install built artifacts to `PREFIX` (default: `./install`) |
 | `make clean` | Remove all build artifacts |
 
@@ -84,6 +85,18 @@ npm install
 
 # Run the demo:
 npx tsx example.ts
+```
+
+## SWI-Prolog (Foreign Library Bridge)
+
+Run the SWI-Prolog demo, which calls the C API through a foreign-language bridge:
+
+```bash
+# Build the core engine + Prolog bridge:
+make swi-prolog
+
+# Run the demo:
+swipl example.pl
 ```
 
 ## License

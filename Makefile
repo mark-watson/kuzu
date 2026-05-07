@@ -7,7 +7,7 @@
 .PHONY: \
 	release relwithdebinfo debug \
 	python python-debug python-install pytest pytest-debug \
-	c-lib \
+	c-lib swi-prolog \
 	install \
 	clean-python-api clean
 .ONESHELL:
@@ -91,6 +91,12 @@ cffi-wrapper: release  ## Build thin C wrapper for CL CFFI (avoids struct-by-val
 	$(CC) -shared -o build/$(call get-build-path,Release)/src/libkuzu_cffi.$(SHARED_EXT) \
 		kuzu_cffi_wrapper.c -Isrc/include \
 		-Lbuild/$(call get-build-path,Release)/src -lkuzu
+
+swi-prolog: release  ## Build SWI-Prolog foreign library bridge
+	swipl-ld -shared -o build/$(call get-build-path,Release)/src/kuzu_swi \
+		kuzu_swi.c -Isrc/include \
+		-Lbuild/$(call get-build-path,Release)/src -lkuzu \
+		-Wl,-rpath,@loader_path
 
 
 # ── Installation ────────────────────────────────────────────────────
