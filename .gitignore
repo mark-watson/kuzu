@@ -1,5 +1,9 @@
 *.so
 
+example_db_ts
+node_module
+example_db*
+
 .idea/
 .vscode
 .vs
