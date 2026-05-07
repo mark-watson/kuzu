@@ -1,4 +1,4 @@
-# Kuzu Graph Database (Fork — v0.11.2.dev2)
+# Kuzu Graph Database (Fork — v0.11.2.dev2) with Python, Common Lisp, TypeScript, and Swi-Prolog bindings
 
 An embeddable property-graph database with Cypher query support.
 This is a simplified fork focused on **Python** and **C library** builds.
