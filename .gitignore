@@ -13,6 +13,11 @@ history.txt
 test_temp/
 build/
 install/
+*.egg-info/
+dist/
+uv.lock
+.python-version
+example_db/
 
 compile_commands.json
 

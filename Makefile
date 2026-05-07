@@ -8,7 +8,7 @@
 	test-build test lcov \
 	java_native_header java javatest \
 	nodejs nodejstest \
-	python python-debug pytest pytest-debug \
+	python python-debug python-install pytest pytest-debug \
 	wasm wasmtest \
 	rusttest \
 	benchmark example \
@@ -205,6 +205,9 @@ pytest-venv: python
 
 pytest-debug: python-debug
 	cmake -E env PYTHONPATH=tools/python_api/build python3 -m pytest -vv tools/python_api/test
+
+python-install: python  ## Build and install kuzu Python package globally via uv
+	uv pip install --system .
 
 wasm:
 	mkdir -p build/wasm && cd build/wasm &&\

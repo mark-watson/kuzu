@@ -8,6 +8,10 @@
 
 PYTHONPATH=
 SHELL=/usr/bin/env bash
+
+.venv:  ## Set up a Python virtual environment via uv
+	uv venv $(VENV)
+
 VENV=.venv
 
 ifeq ($(OS),Windows_NT)
@@ -16,12 +20,8 @@ else
 	VENV_BIN=$(VENV)/bin
 endif
 
-.venv:  ## Set up a Python virtual environment and install dev packages
-	python3 -m venv $(VENV)
-
-requirements: .venv ## Install/update Python dev packages
-	@unset CONDA_PREFIX \
-	&& $(VENV_BIN)/pip install --upgrade -r requirements_dev.txt
+requirements: .venv ## Install/update Python dev packages via uv
+	uv pip install --python $(VENV_BIN)/python -r requirements_dev.txt
 
 pytest: requirements
 ifeq ($(OS),Windows_NT)

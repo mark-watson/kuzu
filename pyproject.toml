@@ -1,0 +1,31 @@
+[project]
+name = "kuzu"
+description = "Highly scalable, extremely fast, easy-to-use embeddable graph database"
+readme = "README.md"
+license = { text = "MIT" }
+keywords = ["graph", "database", "embeddable", "property-graph"]
+dynamic = ["version"]
+requires-python = ">=3.9"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: C++",
+    "Topic :: Database",
+]
+
+[project.urls]
+Homepage = "https://kuzudb.com/"
+Documentation = "https://docs.kuzudb.com/"
+Repository = "https://github.com/kuzudb/kuzu"
+Changelog = "https://github.com/kuzudb/kuzu/releases"
+
+[build-system]
+requires = ["setuptools>=64", "wheel", "pybind11>=2.13"]
+build-backend = "setuptools.build_meta"
+
+[tool.uv.workspace]
+members = [
+    "_test_uv_add",
+]
