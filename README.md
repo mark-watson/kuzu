@@ -26,19 +26,19 @@ uv run example.py
 
 ### Using Kuzu from other projects
 
-Once installed, Kuzu is available system-wide:
+Set `KUZU_HOME` to this repository's path, then run:
 
 ```bash
-uv init --bare
-uv add kuzu
-uv run python -c "import kuzu; print(kuzu.version)"
+uv add "kuzu @ $KUZU_HOME" --editable
+uv sync
 ```
 
-Or reference this source tree directly:
+Then run using:
 
 ```bash
-uv add kuzu --path /path/to/kuzu
+uv run <name of Python script>
 ```
+
 
 ## C Shared Library & Common Lisp
 
