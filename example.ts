@@ -75,7 +75,7 @@ const libkuzuCffi = koffi.load(libkuzuCffiPath);
 const kuzu_destroy_string_fn = libkuzu.func(
   "void kuzu_destroy_string(void *str)"
 );
-const KuzuString = koffi.dispose(
+const KuzuString = koffi.disposable(
   "KuzuString",
   "char *",
   kuzu_destroy_string_fn

@@ -71,6 +71,21 @@ The C header is at `src/include/c_api/kuzu.h`.
 | `make clean` | Remove all build artifacts |
 
 
+## TypeScript (FFI via koffi)
+
+Run the TypeScript demo, which calls the C API directly using [koffi](https://koffi.dev/):
+
+```bash
+# Ensure the shared libraries are built first:
+make c-lib
+
+# Install Node dependencies (one-time):
+npm install
+
+# Run the demo:
+npx tsx example.ts
+```
+
 ## License
 
 Kuzu is licensed under the [MIT License](LICENSE).
